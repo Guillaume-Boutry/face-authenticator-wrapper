@@ -1,0 +1,1 @@
+swig -c++ -go -cgo -soname face -use-shlib -intgosize 64 face.swigcx

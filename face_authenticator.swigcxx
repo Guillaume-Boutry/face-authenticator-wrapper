@@ -1,0 +1,11 @@
+%module face_authenticator
+%{
+#include "face_authenticator.h"
+#include <dlib/dnn.h>
+#include <dlib/image_processing/frontal_face_detector.h>
+%}
+%include <typemaps.i>
+%include "std_string.i"
+%include "stdint.i"
+
+%include "face_authenticator.h"
