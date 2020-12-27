@@ -1,1 +1,1 @@
-swig -c++ -go -cgo -soname face -use-shlib -intgosize 64 face.swigcx
+swig -c++ -go -cgo -intgosize 64 face_authenticator.swigcx
