@@ -5,14 +5,15 @@
 #include <dlib/image_processing/frontal_face_detector.h>
 #include <string>
 #include "neural_network.h"
+#include "load_mem_jpeg.h"
 
-struct Rectangle {
+typedef struct {
     long left;
     long top;
     long right;
     long bottom;
 
-};
+} Rectangle;
 
 class Authenticator {
 public:
@@ -21,11 +22,11 @@ public:
 
     void Init(const std::string &, const std::string &);
 
-    Rectangle DetectFace(const dlib::matrix<dlib::rgb_pixel> &);
+    Rectangle DetectFace(const Image &);
 
-    dlib::matrix<dlib::rgb_pixel> ExtractFace(const dlib::matrix<dlib::rgb_pixel> &, Rectangle &);
+    Image ExtractFace(const Image &, Rectangle &);
 
-    dlib::matrix<float, 0, 1> GenerateEmbeddings(const dlib::matrix<dlib::rgb_pixel> &);
+    dlib::matrix<float, 0, 1> GenerateEmbeddings(const Image &);
 
 
     static double ComputeDistance(const dlib::matrix<float, 0, 1> &, const dlib::matrix<float, 0, 1> &);
