@@ -29,7 +29,7 @@ public:
     dlib::matrix<float, 0, 1> GenerateEmbeddings(const Image &);
 
 
-    static double ComputeDistance(const dlib::matrix<float, 0, 1> &, const dlib::matrix<float, 0, 1> &);
+    double ComputeDistance(const dlib::matrix<float, 0, 1> &, const dlib::matrix<float, 0, 1> &);
 
 
 private:
