@@ -6,6 +6,13 @@
 #include <string>
 #include "neural_network.h"
 
+struct Rectangle {
+    long left;
+    long top;
+    long right;
+    long bottom;
+
+};
 
 class Authenticator {
 public:
@@ -14,9 +21,9 @@ public:
 
     void Init(const std::string &, const std::string &);
 
-    dlib::rectangle DetectFace(const dlib::matrix<dlib::rgb_pixel> &);
+    Rectangle DetectFace(const dlib::matrix<dlib::rgb_pixel> &);
 
-    dlib::matrix<dlib::rgb_pixel> ExtractFace(const dlib::matrix<dlib::rgb_pixel> &, dlib::rectangle &);
+    dlib::matrix<dlib::rgb_pixel> ExtractFace(const dlib::matrix<dlib::rgb_pixel> &, Rectangle &);
 
     dlib::matrix<float, 0, 1> GenerateEmbeddings(const dlib::matrix<dlib::rgb_pixel> &);
 
@@ -32,5 +39,6 @@ private:
 
     std::vector<dlib::matrix<dlib::rgb_pixel>> jitter_image(const dlib::matrix<dlib::rgb_pixel> &img);
 };
+
 
 #endif //FACE_AUTHENTICATOR_H

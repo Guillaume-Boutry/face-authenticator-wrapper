@@ -1,5 +1,4 @@
 #include "face_authenticator.h"
-#include <dlib/image_io.h>
 
 using namespace std;
 using namespace dlib;
@@ -15,15 +14,16 @@ void Authenticator::Init(const string &model1, const string &model2) {
     deserialize(model2) >> this->neural_net;
 }
 
-rectangle Authenticator::DetectFace(const matrix<rgb_pixel> &img) {
+Rectangle Authenticator::DetectFace(const matrix<rgb_pixel> &img) {
     for (rectangle face : detector(img)) {
         // return first face
-        return face;
+        return {face.left(), face.top(), face.right(), face.bottom()};
     }
     return {0, 0, 0, 0};
 }
 
-matrix<rgb_pixel> Authenticator::ExtractFace(const matrix<rgb_pixel> &img, rectangle &face_pos) {
+matrix<rgb_pixel> Authenticator::ExtractFace(const matrix<rgb_pixel> &img, Rectangle &face_rect) {
+    dlib::rectangle face_pos = {face_rect.left, face_rect.top, face_rect.right, face_rect.bottom};
     auto shape = this->shape_predictor(img, face_pos);
     matrix<rgb_pixel> face_chip;
     extract_image_chip(img, get_face_chip_details(shape, 150, 0.25), face_chip);
