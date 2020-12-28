@@ -35,6 +35,8 @@ public:
 
 
 private:
+    std::mutex detector_mutex;
+    std::mutex net_mutex;
     anet_type neural_net;
     dlib::shape_predictor shape_predictor;
     dlib::frontal_face_detector detector;

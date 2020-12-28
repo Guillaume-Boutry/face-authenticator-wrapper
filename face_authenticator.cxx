@@ -13,6 +13,7 @@ void Authenticator::Init(const std::string &model1, const std::string &model2) {
 }
 
 Rectangle Authenticator::DetectFace(const Image &image) {
+    std::lock_guard<std::mutex> lock(this->detector_mutex);
     for (rectangle face : detector(image.img)) {
         // return first face
         return {face.left(), face.top(), face.right(), face.bottom()};
@@ -35,6 +36,7 @@ Image Authenticator::ExtractFace(const Image &image, Rectangle &face_rect) {
 
 
 matrix<float, 0, 1> Authenticator::GenerateEmbeddings(const Image &image) {
+    std::lock_guard<std::mutex> lock(this->net_mutex);
     matrix<float, 0, 1> face_descriptors = mean(mat(this->neural_net(jitter_image(image.img))));
     return face_descriptors;
 }
