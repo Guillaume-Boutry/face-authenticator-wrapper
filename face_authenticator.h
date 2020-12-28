@@ -7,6 +7,8 @@
 #include "neural_network.h"
 #include "load_mem_jpeg.h"
 
+const int EMBEDDINGS_SIZE = 128;
+
 typedef struct {
     long left;
     long top;
@@ -41,5 +43,7 @@ private:
     std::vector<dlib::matrix<dlib::rgb_pixel>> jitter_image(const dlib::matrix<dlib::rgb_pixel> &img);
 };
 
+long serialize_embeddings(const dlib::matrix<float, 0, 1> &, float *);
+dlib::matrix<float, 0, 1> deserialize_embeddings(const float *);
 
 #endif //FACE_AUTHENTICATOR_H
