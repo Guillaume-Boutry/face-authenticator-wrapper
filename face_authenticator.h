@@ -7,7 +7,7 @@
 #include "neural_network.h"
 #include "load_mem_jpeg.h"
 
-const int EMBEDDINGS_SIZE = 128;
+#define EMBEDDINGS_SIZE 128
 
 typedef struct {
     long left;
