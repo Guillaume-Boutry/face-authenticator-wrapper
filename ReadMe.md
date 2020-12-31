@@ -3,6 +3,8 @@
 This project is a GO-C++ wrapper around the DLib project.
 The goal is to be able to authenticate 2 persons.
 
+Authentication is made by generating a 128D vector between 2 images and then computing the distance between the two vectors.
+
 
 ## Build
 Built on ubuntu
